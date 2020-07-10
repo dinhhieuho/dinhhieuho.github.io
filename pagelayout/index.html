@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+/* Style the header */
+header {
+  background-color:#add8e6;
+  padding: 2px;
+  text-align: center;
+  font-size: 15px;
+  color: black;
+}
+/* Style the footer */
+footer {
+  background-color: #2f4f4f;
+  padding: 2px;
+  text-align: center;
+  color: white;
+}
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.menu {
+  background-color:#add8e6;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #2f4f4f;
+}
+
+li {
+  float: left;
+  border-right:1px solid black;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Create three equal columns that floats next to each other */
+.main {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px;
+}
+.left {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 300px;
+}
+.right {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 300px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media only screen and (max-width:600px) {
+  /* For mobile phones: */
+  .menu, .main {
+    width:100%;
+  }
+  .row {
+    display:grid;
+  }
+  .left, .right{
+	width: 100%;
+  }
+  .main {
+	grid-row: 2;
+	grid-column: 1 / span 2;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h2>Header</h2>
+</header>
+<div class="menu"">
+   <ul>
+	  <li><a href="#">Menu1</a></li>
+	  <li><a href="#">Menu2</a></li>
+	  <li><a href="#">Menu3</a></li>
+	</ul>
+</div>
+<div class="row">
+  <div class="left" style="background-color:#aaa;">
+    <h2>Column1</h2>
+  </div>
+  <div class="main" style="background-color:#bbb;">
+    <h2>Column2</h2>
+  </div>
+  <div class="right" style="background-color:#ccc;">
+    <h2>Column3</h2>
+  </div>
+</div>
+<footer>
+  <p>Footer</p>
+</footer>
+
+</body>
+</html>
