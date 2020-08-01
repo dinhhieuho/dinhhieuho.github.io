@@ -1,4 +1,4 @@
-// Constructs a new drawing overlay.
+
 function DrawingOverlay(element, offsetTop) {
     
 	this.element = element;
@@ -10,10 +10,8 @@ function DrawingOverlay(element, offsetTop) {
     if (!this.canvas) return;
     
     this.canvas.className = "drawingoverlay";
-    //this.canvas.id = "drawingoverlay_" + (element.id ? element.id : (int) (Math.random() * 1000000));
 	this.canvas.id = "drawingoverlay";
     
-    // always set it to screen width and height MZ 2014-01-15
     this.canvas.height = screen.height;
     this.canvas.width = screen.width;
 
@@ -31,9 +29,7 @@ function DrawingOverlay(element, offsetTop) {
 }
 
 DrawingOverlay.prototype.clear = function() {
-    // updated 2014-01-15 MZ
-    // made clear a function of the canvas itself
-    // which makes 'this' the canvas
+    
     var g = this.getContext("2d");
     g.clearRect(0, 0, this.width, this.height);
 };
