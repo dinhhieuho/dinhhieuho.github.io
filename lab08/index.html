@@ -1,9 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="lab08.js"></script>
-	<link rel="stylesheet" href="lab08.css" type="text/css" media="projection" id="slideProj" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <!--script src="maze.js" type="text/javascript"></script-->
+	<script src="lab08.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="lab08.css" type="text/css"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab08 - DOM, jQuery (Maze)</title>
@@ -11,9 +12,28 @@
 <body>
     <p><a href="/">Back to Homepage</a></p>
     <h1>Lab08 - DOM, jQuery (Maze)</h1>
-    <div id="header"></div>
-	<div id="container">        
     </div>
-
+		<h2 id="status">Click the "S" to begin.</h2>
+		
+		<!-- This part of the page represents the maze -->
+		<div id="maze">
+			<div id="start">S</div>
+			<div class="boundary" id="boundary"></div>
+			<div class="boundary"></div>
+			<div class="boundary"></div>
+			<div class="boundary"></div>
+			<div class="boundary"></div>
+			<div id="end">E</div>
+		</div>
+		
+		<p>
+			The object of this game is to guide the mouse cursor through the start area and get to the end area.  Be sure to avoid the walls:
+		</p>
+		
+		<div class="boundary example"></div>
+		
+		<p>
+			Good luck!
+		</p>
 </body>
 </html>
