@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Task list</title>
+<link rel="stylesheet" type="text/css" href="styles/tasks.css"
+	media="screen" />
+<script src="scripts/jquery-2.0.3.js"></script>
+<script src="scripts/jquery-tmpl.js"></script>
+</head>
+<body>
+	<header>
+		<span>Task list</span>
+	</header>
+	<main>
+	<section id="taskCreation" class="not">
+		<form>
+			<div>
+				<label>Task</label> <input type="text" required="required"
+					name="task" class="large" placeholder="Breakfast at Tiffanys" />
+			</div>
+			<div>
+				<label>Required by</label> <input type="date" required="required"
+					name="requiredBy" />
+			</div>
+			<div>
+				<label>Category</label> <select name="category">
+					<option value="Personal">Personal</option>
+					<option value="Work">Work</option>
+				</select>
+			</div>
+			<nav>
+				<a href="#" id="saveTask">Save task</a>
+				<a href="#">Clear task</a>
+			</nav>
+		</form>
+	</section>
+	<section>
+		<table id="tblTasks">
+			<colgroup>
+				<col width="40%">
+				<col width="15%">
+				<col width="15%">
+				<col width="30%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Due</th>
+					<th>Category</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<nav>
+			<a href="#" id="btnAddTask">Add task</a>
+			<a href="#" id="btnPrint">Print object to console</a>
+			<a href="#" id="btnLoad">Load object into console</a>
+		</nav>
+	</section>
+	</main>
+	<footer>You have 3 tasks</footer>
+</body>
+<script>
+$(document).ready(function() {
+	$('[required="required"]').prev('label').append( '<span>*</span>').children( 'span').addClass('required');
+	$('tbody tr:even').addClass('even');
+	
+	$('#btnAddTask').click(function(evt) {
+		evt.preventDefault();
+		$('#taskCreation').removeClass('not');
+	});
+	
+	$('tbody tr').click(function(evt) {
+		$(evt.target).closest('td').siblings().andSelf().toggleClass('rowHighlight');
+	});
+	
+	$('#tblTasks tbody').on('click', '.deleteRow', function(evt) { 
+	    evt.preventDefault();
+		$(evt.target).parents('tr').remove(); 
+	});
+	
+	$('#saveTask').click(function(evt) {
+		evt.preventDefault();
+		var task = $('form').toObject();
+		$('#taskRow').tmpl(task).appendTo($('#tblTasks tbody'));
+	});
+	$('#btnPrint').click(function(evt) {
+		evt.preventDefault();
+		var task = $('form').toObject();
+		console.log(task);
+	});
+	$('#btnLoad').click(function(evt) {
+		evt.preventDefault();
+		var obj = {task: "test", requiredBy: "2020-08-08", category: "Work"};
+		$('form').fromObject(obj);
+	});
+});
+
+/*
+Add the following to the Chapter 6 tasks.html code in what you submit to the site:
+Modify the toObject method to use one of map/filter/reduce instead of the $.each method.  (You'll need to decide which is most appropriate.) 
+Add a button 'Print object to console' that shows what toObject returns.  JSON.stringify(someObj) is a global JavaScript method that is useful for making objects readable when you console.log them.
+Add another button 'Load object into console' that creates an object with the expected fields and calls the fromObject plugin to load the values into the form fields.  You can create a single object literal with whatever values you want for demo purposes.
+*/
+(function($) {
+	$.fn.extend({		
+		toObject: function() {
+		    //var result = {}
+			//$.each(this.serializeArray(), function(i, v) { 
+				//result[v.name] = v.value;
+			//});			
+			return this.serializeArray().reduce(function(obj, v){
+				obj[v.name] = v.value;
+				return obj;
+			}, {});
+		},
+		fromObject: function(obj) {
+			$.each(this.find(':input'), function(i,v) {
+				var name = $(v).attr('name');
+				if (obj[name]) {
+				     $(v).val(obj[name]);
+				 } else {
+					$(v).val('');
+				 }
+			});
+		}
+	});
+})(jQuery);
+
+</script>
+
+<script id="taskRow" type="text/x-jQuery-tmpl">
+<tr>
+	<td>${task}</td>
+	<td><time datetime="${requiredBy}"> ${requiredBy}</time></td>
+	<td>${category}</td>
+	<td>
+		<nav>
+			<a href="#">Edit</a>
+			<a href="#">Complete</a>
+			<a href="#" class="deleteRow">Delete</a>
+		</nav>
+	</td>
+</tr>
+</script>
+
+</html>
+
