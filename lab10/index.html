@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lab10 - Events (Clean Screen)</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="lab10.css"
+	media="screen" />
+<script src="scripts/jquery-2.0.3.js"></script>
+<script src="scripts/jquery-tmpl.js"></script>
+</head>
+<body>
+	<p><a href="/">Back to Homepage</a></p>
+    <h1>Lab10 - Events (Clean Screen)</h1>
+	<div id="setting">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="width">Width: </label><input type="text" id="width" value="50" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="amount">Growth Amount: </label><input type="text" id="amount" value="10" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="rate">Grow Rate: </label><input type="text" id="rate" value="250" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="noOfCircles">No Of Circles</label><input type="text" class="form-control" id="noOfCircles" value="3" placeholder="No Of Circles" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="button" value="Start" class="btn btn-primary" id="btnStart" />
+            <input type="button" value="Clear All" class="btn btn-primary" id="btnClear" />
+        </div>
+    </div>
+
+    <div id="circles">
+    </div>
+</div>
+</body>
+<script>
+
+$(document).ready(function() {
+	let animationIntervalId = null;
+    let circles = $("#circles");
+
+    $('#btnStart').on('click', ()  => {
+        circles.empty();
+
+        for (let i=0; i< parseInt($('#noOfCircles').val()); i++) {
+            let circle = $("<div id=" + "'circle" + i + "'"  + " class='circle'>Circular <br /> Div</div>");
+            let pos = randPosition();
+            let color = randColor();
+            circle.css(
+                {
+                    width: $('#width').val() + 'px',
+                    height: $('#width').val() + 'px',
+                    backgroundColor: color
+                });
+            circle.offset(
+                {
+                    top: (pos.x + i),
+                    left: (pos.y + i)
+                }
+            );
+
+            const animationIntervalId = startAminatingCircles(circle);
+
+            circle.on('click', () => {
+                clearInterval(animationIntervalId);
+                circle.remove();
+            });
+
+            circles.append(circle);
+        }
+    });
+
+    function startAminatingCircles(objCircle) {
+        animationIntervalId = setInterval(
+            () => {
+                objCircle.css({
+                        width: (objCircle.width() + parseInt($('#amount').val())) + 'px',
+                        height: (objCircle.height() + parseInt($('#amount').val())) + 'px',
+                    });
+                objCircle.offset({
+                        top: objCircle.offsetX,
+                        left: objCircle.offsetY
+                    });
+
+                objCircle.html(
+                    "width: " + objCircle.width() + "<br />" +
+                    "height: " + objCircle.height() + "<br /> " +
+                    "background: " + objCircle.css( "background-color" )
+                );
+            }
+            , parseInt($('#rate').val())
+        );
+        return animationIntervalId;
+    }
+
+    $('#btnClear').on('click', () => {
+        circles.children().each((i, e) => {
+            $(e).click();
+        });
+    });
+
+    function randPosition() {
+        const posx = (Math.random() * (Math.random()*10 + 50)).toFixed();
+        const posy = (Math.random() * (Math.random()*10 + 50)).toFixed();
+        return {
+            x: posx,
+            y: posy
+        };
+    }
+
+    function randColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+});
+</script>
+
+</html>
+
