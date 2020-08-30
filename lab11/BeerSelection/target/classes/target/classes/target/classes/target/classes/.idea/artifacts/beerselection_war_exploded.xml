@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="beerselection:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/beerselection_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="directory" name="src">
+            <element id="dir-copy" path="$PROJECT_DIR$/target/classes/src" />
+          </element>
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/web/WEB-INF/web.xml" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/target/classes/web/form.html" />
+      <element id="file-copy" path="$PROJECT_DIR$/target/classes/web/result.jsp" />
+    </root>
+  </artifact>
+</component>

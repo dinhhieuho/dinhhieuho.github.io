@@ -1,0 +1,25 @@
+body {
+    font-size: 12px;
+}
+.row {
+    padding-bottom: 10px;
+}
+
+label {
+     line-height: 10px;
+ }
+
+input[type="text"], input[type="number"] {
+    height: 30px;
+    padding: 5px;
+    font-size: 12px;
+    width: 28%;
+}
+
+input.form-control {
+    display: inline;
+}
+
+input[type="button"] {
+    font-size: 12px;
+}
