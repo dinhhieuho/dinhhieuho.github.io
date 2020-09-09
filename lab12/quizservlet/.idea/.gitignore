@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Users\Administrator\Documents\GitHub\dinhhieuho.github.io\lab12\quizservlet\.idea/dataSources/
+/dataSources.local.xml
+# Zeppelin ignored files
+/ZeppelinRemoteNotebooks/
+# Editor-based HTTP Client requests
+/httpRequests/

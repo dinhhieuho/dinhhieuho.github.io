@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../quizdesktop/quiz.desktop.iml" filepath="$PROJECT_DIR$/../quizdesktop/quiz.desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../quizmodel/quiz.model.iml" filepath="$PROJECT_DIR$/../quizmodel/quiz.model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/servlet/quiz/servlet/quiz.servlet.iml" filepath="$PROJECT_DIR$/src/main/servlet/quiz/servlet/quiz.servlet.iml" />
+    </modules>
+  </component>
+</project>
