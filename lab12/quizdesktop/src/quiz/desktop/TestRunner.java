@@ -36,6 +36,7 @@ public class TestRunner {
                 }
 
             }
+			//fixbug 
             System.out.println("Your score is " + quiz.getScore());
             System.out.println("Congratulations, you have completed the Number Quiz, with a score of " + quiz.getScore() + " out of " + quiz.totalQuestion());
 
