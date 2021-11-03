@@ -42,6 +42,7 @@ public class TestRunner {
 
         }///aaa
 		//bbbb
+		//modify fixbug 3
         catch (Exception ex)
         {
             System.out.format("%s: %s", ex.getClass().getName(), ex.getMessage());
